@@ -24,6 +24,9 @@
 <!-- Grain / noise overlay -->
 <div class="grain" aria-hidden="true"></div>
 
+<!-- Neon puzzle-piece space scene (behind everything, drives with scroll) -->
+<canvas id="bgScene" class="bg-scene" aria-hidden="true"></canvas>
+
 <!-- Custom cursor -->
 <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
@@ -133,6 +136,15 @@
 
     <div class="about-grid">
       <div class="about-lead reveal">
+        <div class="about-photo">
+          <img src="assets/profile.jpg" alt="Portrait of Muhammad Mukmin Aidil" width="440" height="440">
+          <svg class="about-photo-frame" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M2,14 V4 a2,2 0 0 1 2,-2 H14" />
+            <path d="M86,2 H96 a2,2 0 0 1 2,2 V14" />
+            <path d="M98,86 V96 a2,2 0 0 1 -2,2 H86" />
+            <path d="M14,98 H4 a2,2 0 0 1 -2,-2 V86" />
+          </svg>
+        </div>
         <p>Based in <strong>Bandar Baru Bangi, Selangor, Malaysia</strong></p>
       </div>
       <div class="about-body reveal">
@@ -202,15 +214,145 @@
             <span class="timeline-date">08/2024 — Present</span>
           </div>
           <p class="timeline-org">KPMG Malaysia, Petaling Jaya, Selangor</p>
-          <ul class="timeline-list">
-            <li><strong>Power BI:</strong> Designed, developed and maintained 20+ dashboards across Audit, Tax, Advisory, Risk and HR — onboarding trackers, annual risk monitoring, management/Exco-level reporting — using Power Query and advanced DAX, presented directly to management and Exco stakeholders.</li>
-            <li><strong>Power Automate:</strong> Developed and maintained 160+ automation flows across all 4 business functions, including 100+ report-extraction flows, 30 email-notification flows and 30 source-file refresh flows, significantly cutting manual reporting effort.</li>
-            <li><strong>Data Integration:</strong> Built automated reporting pipelines with Power BI Dataflow and a centralized Excel source, integrating SQL databases and Dataverse for real-time, cross-platform reporting.</li>
-            <li><strong>Scripting:</strong> PowerShell scripts to auto-refresh Power Query connections and organize network folder data; VBA macros to automate repetitive Excel reporting.</li>
-            <li><strong>Power Apps:</strong> Implemented a Student Affairs Testimonial Approval System via Power Automate + Power Apps, accelerating approval cycle times.</li>
-            <li><strong>AI Video (Synthesia):</strong> Produced multilingual, avatar-based presenter videos for corporate learning and the KPMG Care Immersion event — no filming required.</li>
-            <li><strong>Learning Tech &amp; UAT:</strong> Administered the LMS and partnered with the Tax team on an 11-module Articulate Storyline 360 eLearning course, running structured UAT with stakeholders.</li>
-          </ul>
+
+          <div class="exp-rows">
+
+            <div class="exp-row">
+              <div class="exp-visual" data-viz="powerbi">
+                <svg viewBox="0 0 120 96" aria-hidden="true">
+                  <g class="viz-bars">
+                    <rect class="bar b1" x="14" y="0" width="14" height="0" rx="2"/>
+                    <rect class="bar b2" x="34" y="0" width="14" height="0" rx="2"/>
+                    <rect class="bar b3" x="54" y="0" width="14" height="0" rx="2"/>
+                  </g>
+                  <line class="baseline" x1="10" y1="72" x2="72" y2="72"/>
+                  <circle class="donut" cx="98" cy="40" r="16" fill="none"/>
+                  <circle class="donut-fill" cx="98" cy="40" r="16" fill="none"/>
+                </svg>
+              </div>
+              <div class="exp-copy">
+                <h4>Power BI</h4>
+                <p>Designed, developed and maintained 20+ dashboards across Audit, Tax, Advisory, Risk and HR — onboarding trackers, annual risk monitoring, management/Exco-level reporting — using Power Query and advanced DAX, presented directly to management and Exco stakeholders.</p>
+              </div>
+            </div>
+
+            <div class="exp-row">
+              <div class="exp-visual" data-viz="automate">
+                <svg viewBox="0 0 120 96" aria-hidden="true">
+                  <path class="flow-path" d="M10,48 H36 M46,48 H72 M82,48 H110" />
+                  <circle class="flow-node n1" cx="20" cy="48" r="9"/>
+                  <circle class="flow-node n2" cx="60" cy="48" r="9"/>
+                  <circle class="flow-node n3" cx="100" cy="48" r="9"/>
+                  <circle class="flow-dot" r="3.4"/>
+                </svg>
+              </div>
+              <div class="exp-copy">
+                <h4>Power Automate</h4>
+                <p>Developed and maintained 160+ automation flows across all 4 business functions, including 100+ report-extraction flows, 30 email-notification flows and 30 source-file refresh flows, significantly cutting manual reporting effort.</p>
+              </div>
+            </div>
+
+            <div class="exp-row">
+              <div class="exp-visual" data-viz="integration">
+                <svg viewBox="0 0 120 96" aria-hidden="true">
+                  <path class="int-path p1" d="M18,16 C40,16 42,46 60,46"/>
+                  <path class="int-path p2" d="M18,48 H60"/>
+                  <path class="int-path p3" d="M18,80 C40,80 42,50 60,50"/>
+                  <path class="int-path p4" d="M62,48 H102"/>
+                  <rect class="src-node" x="6" y="8" width="16" height="16" rx="4"/>
+                  <rect class="src-node" x="6" y="40" width="16" height="16" rx="4"/>
+                  <rect class="src-node" x="6" y="72" width="16" height="16" rx="4"/>
+                  <circle class="hub-node" cx="60" cy="48" r="11"/>
+                  <rect class="out-node" x="98" y="38" width="18" height="20" rx="3"/>
+                </svg>
+              </div>
+              <div class="exp-copy">
+                <h4>Data Integration</h4>
+                <p>Built automated reporting pipelines with Power BI Dataflow and a centralized Excel source, integrating SQL databases and Dataverse for real-time, cross-platform reporting.</p>
+              </div>
+            </div>
+
+            <div class="exp-row">
+              <div class="exp-visual" data-viz="scripting">
+                <svg viewBox="0 0 120 96" aria-hidden="true">
+                  <rect class="term-box" x="6" y="10" width="108" height="76" rx="6"/>
+                  <circle class="term-dot" cx="16" cy="20" r="2.2"/>
+                  <circle class="term-dot" cx="24" cy="20" r="2.2"/>
+                  <circle class="term-dot" cx="32" cy="20" r="2.2"/>
+                  <text class="term-line l1" x="14" y="42">PS&gt; Refresh-PowerQuery</text>
+                  <text class="term-line l2" x="14" y="56">Organizing \\network\data</text>
+                  <text class="term-line l3" x="14" y="70">VBA: AutoFormat.Run()</text>
+                  <rect class="term-cursor" x="14" y="74" width="7" height="10"/>
+                </svg>
+              </div>
+              <div class="exp-copy">
+                <h4>Scripting</h4>
+                <p>PowerShell scripts to auto-refresh Power Query connections and organize network folder data; VBA macros to automate repetitive Excel reporting.</p>
+              </div>
+            </div>
+
+            <div class="exp-row">
+              <div class="exp-visual" data-viz="powerapps">
+                <svg viewBox="0 0 120 96" aria-hidden="true">
+                  <path class="app-path" d="M22,48 H50 M70,48 H98"/>
+                  <circle class="app-node" cx="14" cy="48" r="8"/>
+                  <circle class="app-node" cx="60" cy="48" r="8"/>
+                  <circle class="app-node app-final" cx="106" cy="48" r="10"/>
+                  <path class="app-check" d="M100,48 l4,5 l9,-11"/>
+                </svg>
+              </div>
+              <div class="exp-copy">
+                <h4>Power Apps</h4>
+                <p>Implemented a Student Affairs Testimonial Approval System via Power Automate + Power Apps, accelerating approval cycle times.</p>
+              </div>
+            </div>
+
+            <div class="exp-row">
+              <div class="exp-visual" data-viz="video">
+                <svg viewBox="0 0 120 96" aria-hidden="true">
+                  <circle class="play-ring" cx="30" cy="48" r="22"/>
+                  <path class="play-tri" d="M24,37 L44,48 L24,59 Z"/>
+                  <g class="wave-bars">
+                    <rect x="68" y="0" width="6" height="10" rx="2"/>
+                    <rect x="80" y="0" width="6" height="10" rx="2"/>
+                    <rect x="92" y="0" width="6" height="10" rx="2"/>
+                    <rect x="104" y="0" width="6" height="10" rx="2"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="exp-copy">
+                <h4>AI Video (Synthesia)</h4>
+                <p>Produced multilingual, avatar-based presenter videos for corporate learning and the KPMG Care Immersion event — no filming required.</p>
+              </div>
+            </div>
+
+            <div class="exp-row">
+              <div class="exp-visual" data-viz="uat">
+                <svg viewBox="0 0 120 96" aria-hidden="true">
+                  <g class="check-item">
+                    <rect x="10" y="14" width="16" height="16" rx="4"/>
+                    <path class="check-mark" d="M13,22 l4,4 l8,-9"/>
+                    <line x1="34" y1="22" x2="100" y2="22"/>
+                  </g>
+                  <g class="check-item i2">
+                    <rect x="10" y="40" width="16" height="16" rx="4"/>
+                    <path class="check-mark" d="M13,48 l4,4 l8,-9"/>
+                    <line x1="34" y1="48" x2="88" y2="48"/>
+                  </g>
+                  <g class="check-item i3">
+                    <rect x="10" y="66" width="16" height="16" rx="4"/>
+                    <path class="check-mark" d="M13,74 l4,4 l8,-9"/>
+                    <line x1="34" y1="74" x2="94" y2="74"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="exp-copy">
+                <h4>Learning Tech &amp; UAT</h4>
+                <p>Administered the LMS and partnered with the Tax team on an 11-module Articulate Storyline 360 eLearning course, running structured UAT with stakeholders.</p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </article>
 
@@ -308,6 +450,10 @@
         <div class="project-stack">
           <span>Next.js</span><span>React 19</span><span>TypeScript</span><span>Supabase</span><span>Tailwind CSS</span>
         </div>
+        <a class="project-live" href="https://makan-mana-ten.vercel.app/" target="_blank" rel="noopener">
+          Visit Live Site
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </article>
 
       <article class="project-card reveal">
@@ -320,6 +466,55 @@
         <p>Python orchestration platform that decomposes a mission into specialized agent roles (Solution Architect, Backend Developer, Security Engineer) and executes them with dependency-ordered, concurrent LLM calls via the Claude API. Ships with a Flask web dashboard and a terminal live dashboard for real-time agent status and hand-offs, plus a cost-free mock mode.</p>
         <div class="project-stack">
           <span>Python</span><span>Claude API</span><span>Flask</span><span>Multi-Agent Systems</span>
+        </div>
+
+        <div class="orchestration" id="orchestration">
+          <svg viewBox="0 0 400 220" class="orch-svg" aria-hidden="true">
+            <path class="orch-link" data-for="architect" d="M50,110 C100,110 110,44 158,44"/>
+            <path class="orch-link" data-for="backend"   d="M50,110 H158"/>
+            <path class="orch-link" data-for="security"  d="M50,110 C100,110 110,176 158,176"/>
+            <path class="orch-link" data-for="architect" d="M182,44 C230,44 250,110 312,110"/>
+            <path class="orch-link" data-for="backend"   d="M182,110 H312"/>
+            <path class="orch-link" data-for="security"  d="M182,176 C230,176 250,110 312,110"/>
+
+            <circle class="orch-dot" data-for="architect" r="3" style="offset-path:path('M50,110 C100,110 110,44 158,44 L182,44 C230,44 250,110 312,110')"/>
+            <circle class="orch-dot" data-for="backend" r="3" style="offset-path:path('M50,110 H158 L182,110 H312')"/>
+            <circle class="orch-dot" data-for="security" r="3" style="offset-path:path('M50,110 C100,110 110,176 158,176 L182,176 C230,176 250,110 312,110')"/>
+
+            <g class="orch-node orch-mission" data-role="mission" tabindex="0"
+               data-desc="Mission — a natural-language goal handed to the orchestrator, decomposed into an execution plan.">
+              <circle cx="30" cy="110" r="24"/>
+              <text x="30" y="106">Mission</text>
+              <text x="30" y="118">brief</text>
+            </g>
+
+            <g class="orch-node" data-role="architect" tabindex="0"
+               data-desc="Solution Architect — designs the system approach and breaks the mission into dependency-ordered tasks for the other agents.">
+              <circle cx="170" cy="44" r="22"/>
+              <text x="170" y="41">Solution</text>
+              <text x="170" y="53">Architect</text>
+            </g>
+            <g class="orch-node" data-role="backend" tabindex="0"
+               data-desc="Backend Developer — implements the planned tasks concurrently, streaming code and status back to the live dashboard.">
+              <circle cx="170" cy="110" r="22"/>
+              <text x="170" y="107">Backend</text>
+              <text x="170" y="119">Developer</text>
+            </g>
+            <g class="orch-node" data-role="security" tabindex="0"
+               data-desc="Security Engineer — reviews output for vulnerabilities and hands off fixes in parallel with the other agents.">
+              <circle cx="170" cy="176" r="22"/>
+              <text x="170" y="173">Security</text>
+              <text x="170" y="185">Engineer</text>
+            </g>
+
+            <g class="orch-node orch-api" data-role="api" tabindex="0"
+               data-desc="Claude API — every agent calls out concurrently through the same API, with hand-offs merged back into one result.">
+              <circle cx="330" cy="110" r="24"/>
+              <text x="330" y="106">Claude</text>
+              <text x="330" y="118">API</text>
+            </g>
+          </svg>
+          <p class="orch-caption" id="orchCaption" data-default="Hover or tap a node — mission → agents run concurrently → hand off through the Claude API.">Hover or tap a node — mission → agents run concurrently → hand off through the Claude API.</p>
         </div>
       </article>
 
@@ -451,6 +646,7 @@
   </div>
 </footer>
 
+<script src="js/bg-scene.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

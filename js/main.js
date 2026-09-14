@@ -12,6 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // fallback in case 'load' already fired
   setTimeout(() => preloader.classList.add('done'), 2200);
 
+  /* ---------- Profile photo fallback ---------- */
+  const aboutPhoto = document.querySelector('.about-photo');
+  const aboutPhotoImg = aboutPhoto ? aboutPhoto.querySelector('img') : null;
+  if (aboutPhotoImg) {
+    if (aboutPhotoImg.complete && aboutPhotoImg.naturalWidth === 0) {
+      aboutPhoto.classList.add('img-error');
+    } else {
+      aboutPhotoImg.addEventListener('error', () => aboutPhoto.classList.add('img-error'));
+    }
+  }
+
   /* ---------- Footer year ---------- */
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -39,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateRing();
 
-    const hoverables = document.querySelectorAll('a, button, .project-card, .stat, .pill-group span');
+    const hoverables = document.querySelectorAll('a, button, .project-card, .stat, .pill-group span, .exp-row, .orch-node');
     hoverables.forEach(el => {
       el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
@@ -131,6 +142,62 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.4, rootMargin: '-80px 0px -40% 0px' });
 
   sections.forEach(sec => { if (sec.id) sectionObserver.observe(sec); });
+
+  /* ---------- Experience row mini-visualizers (repeatable, works without hover) ---------- */
+  const expRows = document.querySelectorAll('.exp-row');
+  const expObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      entry.target.classList.toggle('in-view', entry.isIntersecting);
+    });
+  }, { threshold: 0.45 });
+
+  expRows.forEach(row => expObserver.observe(row));
+
+  /* ---------- AI Web Office orchestration diagram ---------- */
+  const orchestration = document.getElementById('orchestration');
+  if (orchestration) {
+    const caption = document.getElementById('orchCaption');
+    const defaultText = caption.getAttribute('data-default');
+    const nodes = orchestration.querySelectorAll('.orch-node');
+    const links = orchestration.querySelectorAll('.orch-link');
+    let activeRole = null;
+
+    function highlight(role) {
+      nodes.forEach(n => n.classList.toggle('active', n.getAttribute('data-role') === role));
+      links.forEach(l => l.classList.toggle('lit', l.getAttribute('data-for') === role));
+      orchestration.classList.toggle('has-active', !!role);
+      if (role) {
+        const node = orchestration.querySelector(`.orch-node[data-role="${role}"]`);
+        caption.textContent = node ? node.getAttribute('data-desc') : defaultText;
+      } else {
+        caption.textContent = defaultText;
+      }
+    }
+
+    nodes.forEach(node => {
+      const role = node.getAttribute('data-role');
+      node.addEventListener('mouseenter', () => highlight(role));
+      node.addEventListener('mouseleave', () => { if (activeRole !== role) highlight(activeRole); });
+      node.addEventListener('click', () => {
+        activeRole = activeRole === role ? null : role;
+        highlight(activeRole);
+      });
+      node.addEventListener('focus', () => highlight(role));
+      node.addEventListener('blur', () => highlight(activeRole));
+      node.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activeRole = activeRole === role ? null : role;
+          highlight(activeRole);
+        }
+      });
+    });
+
+    const orchObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => orchestration.classList.toggle('playing', entry.isIntersecting));
+    }, { threshold: 0.3 });
+    orchObserver.observe(orchestration);
+  }
 
   /* ---------- Smooth anchor scrolling for browsers needing JS assist ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
