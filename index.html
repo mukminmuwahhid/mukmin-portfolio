@@ -478,6 +478,50 @@
           Visit Live Site
           <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
+
+        <div class="orchestration orch-linear">
+          <span class="orch-label">Tech stack</span>
+          <svg viewBox="0 0 400 130" class="orch-svg" aria-hidden="true">
+            <path class="orch-link" data-left="client" data-right="framework" d="M58,65 H96"/>
+            <path class="orch-link" data-left="framework" data-right="ui" d="M140,65 H178"/>
+            <path class="orch-link" data-left="ui" data-right="data" d="M222,65 H260"/>
+            <path class="orch-link" data-left="data" data-right="hosting" d="M304,65 H342"/>
+
+            <circle class="orch-dot orch-dot-single" r="3" style="offset-path:path('M58,65 H342')"/>
+
+            <g class="orch-node" data-role="client" tabindex="0"
+               data-desc="Client — the browser rendering the app as a mobile-first PWA.">
+              <circle cx="36" cy="65" r="22"/>
+              <text x="36" y="62">Browser</text>
+              <text x="36" y="74">Client</text>
+            </g>
+            <g class="orch-node" data-role="framework" tabindex="0"
+               data-desc="Framework — Next.js 16 with the App Router and Turbopack.">
+              <circle cx="118" cy="65" r="22"/>
+              <text x="118" y="62">Next.js 16</text>
+              <text x="118" y="74">Framework</text>
+            </g>
+            <g class="orch-node" data-role="ui" tabindex="0"
+               data-desc="UI — React 19 components styled with Tailwind CSS.">
+              <circle cx="200" cy="65" r="22"/>
+              <text x="200" y="62">React 19</text>
+              <text x="200" y="74">+ Tailwind</text>
+            </g>
+            <g class="orch-node" data-role="data" tabindex="0"
+               data-desc="Database / Auth / API — Supabase (Postgres + @supabase/ssr) with Row Level Security.">
+              <circle cx="282" cy="65" r="22"/>
+              <text x="282" y="62">Supabase</text>
+              <text x="282" y="74">DB · Auth</text>
+            </g>
+            <g class="orch-node" data-role="hosting" tabindex="0"
+               data-desc="Hosting — deployed on Vercel's free Hobby tier.">
+              <circle cx="364" cy="65" r="22"/>
+              <text x="364" y="62">Vercel</text>
+              <text x="364" y="74">Hosting</text>
+            </g>
+          </svg>
+          <p class="orch-caption" data-default="Client → Framework → UI → Database/Auth/API → Hosting — written end-to-end in TypeScript.">Client → Framework → UI → Database/Auth/API → Hosting — written end-to-end in TypeScript.</p>
+        </div>
       </article>
 
       <article class="project-card reveal">
@@ -492,7 +536,8 @@
           <span>Python</span><span>Claude API</span><span>Flask</span><span>Multi-Agent Systems</span>
         </div>
 
-        <div class="orchestration" id="orchestration">
+        <div class="orchestration">
+          <span class="orch-label">Multi-agent orchestration</span>
           <svg viewBox="0 0 400 220" class="orch-svg" aria-hidden="true">
             <path class="orch-link" data-for="architect" d="M50,110 C100,110 110,44 158,44"/>
             <path class="orch-link" data-for="backend"   d="M50,110 H158"/>
@@ -538,7 +583,7 @@
               <text x="330" y="118">API</text>
             </g>
           </svg>
-          <p class="orch-caption" id="orchCaption" data-default="Hover or tap a node — mission → agents run concurrently → hand off through the Claude API.">Hover or tap a node — mission → agents run concurrently → hand off through the Claude API.</p>
+          <p class="orch-caption" data-default="Hover or tap a node — mission → agents run concurrently → hand off through the Claude API.">Hover or tap a node — mission → agents run concurrently → hand off through the Claude API.</p>
         </div>
       </article>
 
@@ -553,6 +598,54 @@
         <div class="project-stack">
           <span>TensorFlow</span><span>LSTM</span><span>Flask</span><span>Deep Learning</span>
         </div>
+        <a class="project-live" href="https://mukminmuwahhid.github.io/LSTM/index.html" target="_blank" rel="noopener">
+          Visit Live Site
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <div class="orchestration orch-linear">
+          <span class="orch-label">Model architecture</span>
+          <svg viewBox="0 0 400 130" class="orch-svg" aria-hidden="true">
+            <path class="orch-link" data-left="input" data-right="lstm" d="M58,65 H96"/>
+            <path class="orch-link" data-left="lstm" data-right="dropout" d="M140,65 H178"/>
+            <path class="orch-link" data-left="dropout" data-right="dense" d="M222,65 H260"/>
+            <path class="orch-link" data-left="dense" data-right="output" d="M304,65 H342"/>
+
+            <circle class="orch-dot orch-dot-single" r="3" style="offset-path:path('M58,65 H342')"/>
+
+            <g class="orch-node" data-role="input" tabindex="0"
+               data-desc="Input Sequence — a rolling window of past hourly consumption readings fed into the model.">
+              <circle cx="36" cy="65" r="22"/>
+              <text x="36" y="62">Input</text>
+              <text x="36" y="74">Sequence</text>
+            </g>
+            <g class="orch-node" data-role="lstm" tabindex="0"
+               data-desc="LSTM Layer — recurrent units that capture long-term temporal patterns in the sequence.">
+              <circle cx="118" cy="65" r="22"/>
+              <text x="118" y="62">LSTM</text>
+              <text x="118" y="74">Layer</text>
+            </g>
+            <g class="orch-node" data-role="dropout" tabindex="0"
+               data-desc="Dropout — randomly disables units during training to reduce overfitting.">
+              <circle cx="200" cy="65" r="22"/>
+              <text x="200" y="62">Drop-</text>
+              <text x="200" y="74">out</text>
+            </g>
+            <g class="orch-node" data-role="dense" tabindex="0"
+               data-desc="Dense Layer — a fully connected layer that maps the LSTM output to a single value.">
+              <circle cx="282" cy="65" r="22"/>
+              <text x="282" y="62">Dense</text>
+              <text x="282" y="74">Layer</text>
+            </g>
+            <g class="orch-node" data-role="output" tabindex="0"
+               data-desc="Predicted Output — the forecasted next-step consumption, compared against actual usage on the evaluation dashboard.">
+              <circle cx="364" cy="65" r="22"/>
+              <text x="364" y="62">Predicted</text>
+              <text x="364" y="74">Output</text>
+            </g>
+          </svg>
+          <p class="orch-caption" data-default="Hover or tap a layer — input sequence flows through LSTM and dropout to a dense output layer.">Hover or tap a layer — input sequence flows through LSTM and dropout to a dense output layer.</p>
+        </div>
       </article>
 
       <article class="project-card reveal">
@@ -565,6 +658,43 @@
         <p>Gamified web app that helps new joiners learn the firm's business-support functions through quizzes and challenges. JavaScript talks to Power Automate HTTP actions, writing responses into Excel and Dataverse and returning results to the interface — real-time leaderboards, total scores and progress tracking.</p>
         <div class="project-stack">
           <span>JavaScript</span><span>Power Automate</span><span>Dataverse</span><span>Excel</span>
+        </div>
+
+        <div class="orchestration orch-linear">
+          <span class="orch-label">Score submission flow</span>
+          <svg viewBox="0 0 400 130" class="orch-svg" aria-hidden="true">
+            <path class="orch-link" data-left="quiz" data-right="flow" d="M58,65 H123"/>
+            <path class="orch-link" data-left="flow" data-right="store" d="M167,65 H233"/>
+            <path class="orch-link" data-left="store" data-right="board" d="M277,65 H342"/>
+
+            <circle class="orch-dot orch-dot-single" r="3" style="offset-path:path('M58,65 H342')"/>
+
+            <g class="orch-node" data-role="quiz" tabindex="0"
+               data-desc="Quiz UI — vanilla JavaScript quiz screen; on submit it POSTs a JSON payload like { score, totalQuestions, userId } via fetch.">
+              <circle cx="36" cy="65" r="22"/>
+              <text x="36" y="62">Quiz UI</text>
+              <text x="36" y="74">JavaScript</text>
+            </g>
+            <g class="orch-node" data-role="flow" tabindex="0"
+               data-desc="Power Automate — an HTTP-triggered flow receives the JSON payload and orchestrates the writes.">
+              <circle cx="145" cy="65" r="22"/>
+              <text x="145" y="62">Power</text>
+              <text x="145" y="74">Automate</text>
+            </g>
+            <g class="orch-node" data-role="store" tabindex="0"
+               data-desc="Excel &amp; Dataverse — the flow writes the score and progress into both an Excel table and Dataverse records.">
+              <circle cx="255" cy="65" r="22"/>
+              <text x="255" y="62">Excel &amp;</text>
+              <text x="255" y="74">Dataverse</text>
+            </g>
+            <g class="orch-node" data-role="board" tabindex="0"
+               data-desc="Live Leaderboard — the flow responds with updated JSON standings, rendered back into the quiz UI in real time.">
+              <circle cx="364" cy="65" r="22"/>
+              <text x="364" y="62">Live</text>
+              <text x="364" y="74">Leaderboard</text>
+            </g>
+          </svg>
+          <p class="orch-caption" data-default="Hover or tap a step — the quiz posts JSON scores through Power Automate and gets a live leaderboard back.">Hover or tap a step — the quiz posts JSON scores through Power Automate and gets a live leaderboard back.</p>
         </div>
       </article>
 

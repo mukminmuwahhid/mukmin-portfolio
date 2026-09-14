@@ -181,18 +181,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   expRows.forEach(row => expObserver.observe(row));
 
-  /* ---------- AI Web Office orchestration diagram ---------- */
-  const orchestration = document.getElementById('orchestration');
-  if (orchestration) {
-    const caption = document.getElementById('orchCaption');
+  /* ---------- Interactive architecture diagrams (reused across project cards) ---------- */
+  document.querySelectorAll('.orchestration').forEach((orchestration) => {
+    const caption = orchestration.querySelector('.orch-caption');
+    if (!caption) return;
     const defaultText = caption.getAttribute('data-default');
     const nodes = orchestration.querySelectorAll('.orch-node');
     const links = orchestration.querySelectorAll('.orch-link');
     let activeRole = null;
 
+    function linkMatches(link, role) {
+      if (!role) return false;
+      const forAttr = link.getAttribute('data-for');
+      if (forAttr) return forAttr === role;
+      const left = link.getAttribute('data-left');
+      const right = link.getAttribute('data-right');
+      return left === role || right === role;
+    }
+
     function highlight(role) {
       nodes.forEach(n => n.classList.toggle('active', n.getAttribute('data-role') === role));
-      links.forEach(l => l.classList.toggle('lit', l.getAttribute('data-for') === role));
+      links.forEach(l => l.classList.toggle('lit', linkMatches(l, role)));
       orchestration.classList.toggle('has-active', !!role);
       if (role) {
         const node = orchestration.querySelector(`.orch-node[data-role="${role}"]`);
@@ -225,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => orchestration.classList.toggle('playing', entry.isIntersecting));
     }, { threshold: 0.3 });
     orchObserver.observe(orchestration);
-  }
+  });
 
   /* ---------- Smooth anchor scrolling for browsers needing JS assist ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
