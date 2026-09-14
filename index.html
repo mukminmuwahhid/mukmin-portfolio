@@ -12,7 +12,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
-<script>document.documentElement.classList.add('js');</script>
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var theme = 'dark';
+  try {
+    var saved = localStorage.getItem('theme');
+    theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  } catch(e) {}
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+</script>
 </head>
 <body>
 
@@ -35,14 +45,21 @@
 <header class="topbar">
   <a href="#top" class="logo">MM<span>A</span></a>
 
-  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="topbar-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch to light mode" aria-pressed="false">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"/></svg>
+    </button>
 
-  <a href="mailto:mukminmuwahid@gmail.com" class="say-hello">
-    <span>Say Hello</span>
-    <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <a href="mailto:mukminmuwahid@gmail.com" class="say-hello">
+      <span>Say Hello</span>
+      <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
 </header>
 
 <!-- Side numbered nav (desktop) -->
@@ -73,7 +90,14 @@
   </ul>
   <div class="mobile-nav-foot">
     <a href="mailto:mukminmuwahid@gmail.com">mukminmuwahid@gmail.com</a>
-    <a href="tel:+60197234120">019-7234120</a>
+    <div class="contact-socials">
+      <a href="https://www.linkedin.com/in/mukmin-muwahhid-aidil-390723297/" target="_blank" rel="noopener" aria-label="LinkedIn profile" class="social-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://github.com/mukminmuwahhid" target="_blank" rel="noopener" aria-label="GitHub profile" class="social-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -88,7 +112,7 @@
     </div>
 
     <div class="hero-inner reveal">
-      <p class="eyebrow">Portfolio — 2026 / Bandar Baru Bangi, Malaysia</p>
+      <p class="eyebrow">Portfolio — 2026</p>
       <h1 class="hero-name">Muhammad<br>Mukmin&nbsp;Aidil</h1>
       <p class="hero-role">Automation &amp; Power Platform Specialist</p>
 
@@ -145,7 +169,7 @@
             <path d="M14,98 H4 a2,2 0 0 1 -2,-2 V86" />
           </svg>
         </div>
-        <p>Based in <strong>Bandar Baru Bangi, Selangor, Malaysia</strong></p>
+        <p>Automating the busywork <strong>so people can focus on the work that matters</strong></p>
       </div>
       <div class="about-body reveal">
         <p>I'm an Automation &amp; Power Platform specialist with a Bachelor's degree in Information Systems (Hons.), Intelligent Systems Engineering, and 2+ years driving digital transformation across Audit, Tax, Advisory and Risk functions at <strong>KPMG Malaysia</strong>.</p>
@@ -614,19 +638,13 @@
 
       <a href="mailto:mukminmuwahid@gmail.com" class="contact-email">mukminmuwahid@gmail.com</a>
 
-      <div class="contact-details">
-        <div>
-          <span class="label">Phone</span>
-          <a href="tel:+60197234120">019-7234120</a>
-        </div>
-        <div>
-          <span class="label">Location</span>
-          <span>Bandar Baru Bangi, Selangor, Malaysia</span>
-        </div>
-        <div>
-          <span class="label">LinkedIn</span>
-          <a href="https://linkedin.com/in/mukmin-muwahhid-aidil-390723297" target="_blank" rel="noopener">mukmin-muwahhid-aidil</a>
-        </div>
+      <div class="contact-socials">
+        <a href="https://www.linkedin.com/in/mukmin-muwahhid-aidil-390723297/" target="_blank" rel="noopener" aria-label="LinkedIn profile" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://github.com/mukminmuwahhid" target="_blank" rel="noopener" aria-label="GitHub profile" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
       </div>
     </div>
   </section>
@@ -642,6 +660,14 @@
   </div>
   <div class="footer-bottom">
     <span>&copy; <span id="year"></span> Muhammad Mukmin Aidil.</span>
+    <div class="contact-socials footer-socials">
+      <a href="https://www.linkedin.com/in/mukmin-muwahhid-aidil-390723297/" target="_blank" rel="noopener" aria-label="LinkedIn profile" class="social-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://github.com/mukminmuwahhid" target="_blank" rel="noopener" aria-label="GitHub profile" class="social-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+    </div>
     <a href="#top" class="back-top">Back to top ↑</a>
   </div>
 </footer>

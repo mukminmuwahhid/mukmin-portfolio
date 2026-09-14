@@ -12,6 +12,34 @@ document.addEventListener('DOMContentLoaded', () => {
   // fallback in case 'load' already fired
   setTimeout(() => preloader.classList.add('done'), 2200);
 
+  /* ---------- Dark / light theme toggle ---------- */
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    const root = document.documentElement;
+
+    function applyTheme(theme, announce) {
+      root.setAttribute('data-theme', theme);
+      themeToggle.setAttribute('aria-pressed', String(theme === 'light'));
+      themeToggle.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+      if (announce) window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
+    }
+
+    applyTheme(root.getAttribute('data-theme') === 'light' ? 'light' : 'dark', false);
+
+    themeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      applyTheme(next, true);
+    });
+
+    const mql = window.matchMedia('(prefers-color-scheme: light)');
+    mql.addEventListener('change', (e) => {
+      let hasSaved = false;
+      try { hasSaved = !!localStorage.getItem('theme'); } catch (err) {}
+      if (!hasSaved) applyTheme(e.matches ? 'light' : 'dark', true);
+    });
+  }
+
   /* ---------- Profile photo fallback ---------- */
   const aboutPhoto = document.querySelector('.about-photo');
   const aboutPhotoImg = aboutPhoto ? aboutPhoto.querySelector('img') : null;
@@ -50,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateRing();
 
-    const hoverables = document.querySelectorAll('a, button, .project-card, .stat, .pill-group span, .exp-row, .orch-node');
+    const hoverables = document.querySelectorAll('a, button, .project-card, .stat, .pill-group span, .exp-row, .orch-node, .social-btn, .theme-toggle');
     hoverables.forEach(el => {
       el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
       el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
