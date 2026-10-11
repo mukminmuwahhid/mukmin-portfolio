@@ -463,66 +463,32 @@
 
     <div class="projects-grid">
 
-      <article class="project-card reveal">
-        <div class="project-top">
-          <span class="project-index">01</span>
-          <span class="project-tag">Personal Project</span>
+      <article class="project-card project-featured reveal" id="audit-project">
+        <div class="project-top"><span class="project-index">01</span><span class="project-tag">Featured ? KPMG Malaysia</span></div>
+        <h3>Audit Email Notification</h3>
+        <p class="project-role">End-to-End Learning Compliance Reporting &amp; Notification Automation</p>
+        <p>Designed an integrated reporting pipeline for Audit Learning &amp; Development, connecting LMS report collection, cloud transformation, Excel tracker refreshes and targeted notifications. Course-specific configurations support varied completion criteria and reporting needs, with SIC validation before learner communications.</p>
+        <div class="project-stack"><span>Power Automate</span><span>Power Automate Desktop</span><span>Power BI Dataflows</span><span>Microsoft Entra ID</span><span>OneDrive</span><span>Excel</span><span>LMS</span><span>Outlook</span></div>
+        <div class="audit-workflow">
+          <div class="audit-workflow-head"><span class="orch-label">Architecture ? 7 stages</span><span class="audit-cadence">Morning &amp; evening runs ? On-demand refreshes</span></div>
+          <p class="audit-hint">Conceptual workflow. Hover or select a stage to explore its tools and purpose.</p>
+          <ol class="audit-pipeline" aria-label="Audit reporting workflow"><li><button type="button" class="audit-stage" data-stage="0" aria-pressed="true" aria-controls="audit-detail"><span class="audit-step">01</span><strong>Course Configuration</strong><small>Audit SIC ? Duplication Form</small></button></li><li><button type="button" class="audit-stage" data-stage="1" aria-pressed="false" aria-controls="audit-detail"><span class="audit-step">02</span><strong>Report Ingestion</strong><small>LMS ? Power Automate ? OneDrive</small></button></li><li><button type="button" class="audit-stage" data-stage="2" aria-pressed="false" aria-controls="audit-detail"><span class="audit-step">03</span><strong>Cloud Transformation</strong><small>Power BI Dataflows</small></button></li><li><button type="button" class="audit-stage" data-stage="3" aria-pressed="false" aria-controls="audit-detail"><span class="audit-step">04</span><strong>Refresh Orchestration</strong><small>Power Automate ? Microsoft Entra ID</small></button></li><li><button type="button" class="audit-stage" data-stage="4" aria-pressed="false" aria-controls="audit-detail"><span class="audit-step">05</span><strong>Source-File Refresh</strong><small>Power Automate Desktop ? Excel</small></button></li><li><button type="button" class="audit-stage" data-stage="5" aria-pressed="false" aria-controls="audit-detail"><span class="audit-step">06</span><strong>SIC Quality Check</strong><small>Outlook ? Audit SIC</small></button></li><li><button type="button" class="audit-stage" data-stage="6" aria-pressed="false" aria-controls="audit-detail"><span class="audit-step">07</span><strong>Learner Notification</strong><small>Power Automate ? Outlook</small></button></li></ol>
+          <div class="audit-detail" id="audit-detail" aria-live="polite" aria-atomic="true">
+            <span class="orch-label" id="audit-selected">Selected stage 1</span>
+            <h4 id="audit-title">Course Configuration</h4>
+            <p class="audit-tools" id="audit-tools">Audit SIC ? Duplication Form</p>
+            <p id="audit-description">Capture course details, item/programme IDs, required LMS reports, completion dates and employee-status filters.</p>
+            <p id="audit-purpose">Translate each course?s reporting requirements into a repeatable tracker configuration.</p>
+          </div>
+          <div class="audit-checkpoint"><strong>Human validation checkpoint</strong><p>Learner communications follow SIC review. This diagram describes the dependency; it does not specify an approval signal or email-trigger mechanism.</p></div>
+          <div class="audit-notifications" aria-label="Learner notification categories"><span>Course reminders</span><span>Deadline extensions</span><span>Incomplete-learning notices</span></div>
         </div>
-        <h3>Makan Mana</h3>
-        <p class="project-role">Restaurant Discovery &amp; Decision Web App</p>
-        <p>Full-stack Next.js 16 + React 19 app in TypeScript for choosing where to eat in One Utama — filterable browsing, an animated spin-the-wheel picker, anonymous ratings/votes, a daily promo watchlist and crowdsourced submissions. Data layer on Supabase Postgres with Row Level Security and aggregate SQL views, styled with Tailwind CSS, shipped as a mobile-first PWA on Vercel.</p>
-        <div class="project-stack">
-          <span>Next.js</span><span>React 19</span><span>TypeScript</span><span>Supabase</span><span>Tailwind CSS</span>
-        </div>
-        <a class="project-live" href="https://makan-mana-ten.vercel.app/" target="_blank" rel="noopener">
-          Visit Live Site
-          <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-
-        <div class="orchestration orch-linear">
-          <span class="orch-label">Tech stack</span>
-          <svg viewBox="0 0 400 130" class="orch-svg" aria-hidden="true">
-            <path class="orch-link" data-left="client" data-right="framework" d="M58,65 H96"/>
-            <path class="orch-link" data-left="framework" data-right="ui" d="M140,65 H178"/>
-            <path class="orch-link" data-left="ui" data-right="data" d="M222,65 H260"/>
-            <path class="orch-link" data-left="data" data-right="hosting" d="M304,65 H342"/>
-
-            <circle class="orch-dot orch-dot-single" r="3" style="offset-path:path('M58,65 H342')"/>
-
-            <g class="orch-node" data-role="client" tabindex="0"
-               data-desc="Client — the browser rendering the app as a mobile-first PWA.">
-              <circle cx="36" cy="65" r="22"/>
-              <text x="36" y="62">Browser</text>
-              <text x="36" y="74">Client</text>
-            </g>
-            <g class="orch-node" data-role="framework" tabindex="0"
-               data-desc="Framework — Next.js 16 with the App Router and Turbopack.">
-              <circle cx="118" cy="65" r="22"/>
-              <text x="118" y="62">Next.js 16</text>
-              <text x="118" y="74">Framework</text>
-            </g>
-            <g class="orch-node" data-role="ui" tabindex="0"
-               data-desc="UI — React 19 components styled with Tailwind CSS.">
-              <circle cx="200" cy="65" r="22"/>
-              <text x="200" y="62">React 19</text>
-              <text x="200" y="74">+ Tailwind</text>
-            </g>
-            <g class="orch-node" data-role="data" tabindex="0"
-               data-desc="Database / Auth / API — Supabase (Postgres + @supabase/ssr) with Row Level Security.">
-              <circle cx="282" cy="65" r="22"/>
-              <text x="282" y="62">Supabase</text>
-              <text x="282" y="74">DB · Auth</text>
-            </g>
-            <g class="orch-node" data-role="hosting" tabindex="0"
-               data-desc="Hosting — deployed on Vercel's free Hobby tier.">
-              <circle cx="364" cy="65" r="22"/>
-              <text x="364" y="62">Vercel</text>
-              <text x="364" y="74">Hosting</text>
-            </g>
-          </svg>
-          <p class="orch-caption" data-default="Client → Framework → UI → Database/Auth/API → Hosting — written end-to-end in TypeScript.">Client → Framework → UI → Database/Auth/API → Hosting — written end-to-end in TypeScript.</p>
-        </div>
+        <details class="audit-case"><summary>Contributions &amp; business value</summary>
+          <div class="audit-case-grid"><div><h4>My contributions</h4><ul><li>Translated course requirements into tracker configurations and LMS schedules.</li><li>Built report extraction, OneDrive organisation and course-specific Dataflows.</li><li>Integrated authenticated refresh operations through Entra ID and Excel refreshes through PAD.</li><li>Implemented SIC status emails and supported learner notifications following validation.</li><li>Coordinated recurring and on-demand reporting operations.</li></ul></div>
+          <div><h4>Business value</h4><ul><li>Reduced repetitive report collection and preparation.</li><li>Centralised transformation rules for consistent reporting.</li><li>Improved visibility when trackers were ready for review.</li><li>Preserved human checks on data quality.</li><li>Supported different programmes with repeatable execution.</li></ul></div></div>
+        </details>
       </article>
+
 
       <article class="project-card reveal">
         <div class="project-top">
@@ -711,6 +677,66 @@
         </div>
       </article>
 
+      <article class="project-card reveal">
+        <div class="project-top">
+          <span class="project-index">06</span>
+          <span class="project-tag">Personal Project</span>
+        </div>
+        <h3>Makan Mana</h3>
+        <p class="project-role">Restaurant Discovery &amp; Decision Web App</p>
+        <p>Full-stack Next.js 16 + React 19 app in TypeScript for choosing where to eat in One Utama — filterable browsing, an animated spin-the-wheel picker, anonymous ratings/votes, a daily promo watchlist and crowdsourced submissions. Data layer on Supabase Postgres with Row Level Security and aggregate SQL views, styled with Tailwind CSS, shipped as a mobile-first PWA on Vercel.</p>
+        <div class="project-stack">
+          <span>Next.js</span><span>React 19</span><span>TypeScript</span><span>Supabase</span><span>Tailwind CSS</span>
+        </div>
+        <a class="project-live" href="https://makan-mana-ten.vercel.app/" target="_blank" rel="noopener">
+          Visit Live Site
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7V15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <div class="orchestration orch-linear">
+          <span class="orch-label">Tech stack</span>
+          <svg viewBox="0 0 400 130" class="orch-svg" aria-hidden="true">
+            <path class="orch-link" data-left="client" data-right="framework" d="M58,65 H96"/>
+            <path class="orch-link" data-left="framework" data-right="ui" d="M140,65 H178"/>
+            <path class="orch-link" data-left="ui" data-right="data" d="M222,65 H260"/>
+            <path class="orch-link" data-left="data" data-right="hosting" d="M304,65 H342"/>
+
+            <circle class="orch-dot orch-dot-single" r="3" style="offset-path:path('M58,65 H342')"/>
+
+            <g class="orch-node" data-role="client" tabindex="0"
+               data-desc="Client — the browser rendering the app as a mobile-first PWA.">
+              <circle cx="36" cy="65" r="22"/>
+              <text x="36" y="62">Browser</text>
+              <text x="36" y="74">Client</text>
+            </g>
+            <g class="orch-node" data-role="framework" tabindex="0"
+               data-desc="Framework — Next.js 16 with the App Router and Turbopack.">
+              <circle cx="118" cy="65" r="22"/>
+              <text x="118" y="62">Next.js 16</text>
+              <text x="118" y="74">Framework</text>
+            </g>
+            <g class="orch-node" data-role="ui" tabindex="0"
+               data-desc="UI — React 19 components styled with Tailwind CSS.">
+              <circle cx="200" cy="65" r="22"/>
+              <text x="200" y="62">React 19</text>
+              <text x="200" y="74">+ Tailwind</text>
+            </g>
+            <g class="orch-node" data-role="data" tabindex="0"
+               data-desc="Database / Auth / API — Supabase (Postgres + @supabase/ssr) with Row Level Security.">
+              <circle cx="282" cy="65" r="22"/>
+              <text x="282" y="62">Supabase</text>
+              <text x="282" y="74">DB · Auth</text>
+            </g>
+            <g class="orch-node" data-role="hosting" tabindex="0"
+               data-desc="Hosting — deployed on Vercel's free Hobby tier.">
+              <circle cx="364" cy="65" r="22"/>
+              <text x="364" y="62">Vercel</text>
+              <text x="364" y="74">Hosting</text>
+            </g>
+          </svg>
+          <p class="orch-caption" data-default="Client → Framework → UI → Database/Auth/API → Hosting — written end-to-end in TypeScript.">Client → Framework → UI → Database/Auth/API → Hosting — written end-to-end in TypeScript.</p>
+        </div>
+      </article>
     </div>
   </section>
 

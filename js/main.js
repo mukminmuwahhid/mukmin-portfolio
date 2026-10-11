@@ -181,6 +181,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   expRows.forEach(row => expObserver.observe(row));
 
+
+  /* Audit reporting workflow: native buttons support mouse, touch and keyboard. */
+  const auditStages = [["Course Configuration", "Audit SIC ? Duplication Form", "Capture course details, item/programme IDs, required LMS reports, completion dates and employee-status filters.", "Translate each course?s reporting requirements into a repeatable tracker configuration."], ["Report Ingestion", "LMS ? Power Automate ? OneDrive", "Schedule Learning History, Programme Status and examination reports as required; organise incoming files in dedicated course folders.", "Consolidate the required inputs before downstream processing begins."], ["Cloud Transformation", "Power BI Dataflows", "Clean, consolidate and filter LMS records in a dedicated course Dataflow using course-specific rules.", "Centralise data preparation separately from the Excel tracker."], ["Refresh Orchestration", "Power Automate ? Microsoft Entra ID", "Once required reports are available, initiate an authenticated Dataflow refresh and coordinate completion before the source-file refresh.", "Manage upstream dependencies so later steps use refreshed data."], ["Source-File Refresh", "Power Automate Desktop ? Excel", "Refresh the Excel source file after the Dataflow completes successfully to retrieve the latest transformed records.", "Keep the course tracker aligned with the cloud-prepared data."], ["SIC Quality Check", "Outlook ? Audit SIC", "Notify the course SIC that refreshed data is ready. The SIC reviews completion records, discrepancies and unexpected results.", "Preserve a human quality-control checkpoint before learner communications."], ["Learner Notification", "Power Automate ? Outlook", "Use the validated tracker for course reminders, deadline extensions or incomplete-course notices, according to course rules.", "Communicate relevant outcomes to staff and partners after review."]];
+  const auditButtons = document.querySelectorAll('.audit-stage');
+  function selectAuditStage(index) {
+    const [title, tools, description, purpose] = auditStages[index];
+    auditButtons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+    document.getElementById('audit-selected').textContent = 'Selected stage ' + (index + 1);
+    document.getElementById('audit-title').textContent = title;
+    document.getElementById('audit-tools').textContent = tools;
+    document.getElementById('audit-description').textContent = description;
+    document.getElementById('audit-purpose').textContent = purpose;
+  }
+  auditButtons.forEach((button, index) => {
+    button.addEventListener('pointerenter', (event) => {
+      if (event.pointerType === 'mouse') selectAuditStage(index);
+    });
+    button.addEventListener('click', () => selectAuditStage(index));
+    button.addEventListener('focus', () => selectAuditStage(index));
+    button.addEventListener('keydown', (event) => {
+      const delta = {ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1}[event.key];
+      if (delta) {
+        event.preventDefault();
+        auditButtons[(index + delta + auditButtons.length) % auditButtons.length].focus();
+      }
+    });
+  });
+
   /* ---------- Interactive architecture diagrams (reused across project cards) ---------- */
   document.querySelectorAll('.orchestration').forEach((orchestration) => {
     const caption = orchestration.querySelector('.orch-caption');
