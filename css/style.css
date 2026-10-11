@@ -863,3 +863,26 @@ html.js .reveal.in{ opacity:1; transform:translateY(0); }
   .audit-detail{ padding:18px; min-height:270px; }
   .audit-notifications{ flex-direction:column; }
 }
+
+/* Lightweight stage illustrations and the selected flow's implementation details. */
+.audit-icon{ display:block; width:32px; height:32px; color:var(--accent); margin:0 0 12px; }
+.audit-stage{ min-height:205px; }
+.audit-flow-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:32px; margin-top:22px; border-top:1px solid var(--line); padding-top:6px; }
+.audit-flow-grid h5{ font-size:12px; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); margin-top:18px; }
+.audit-flow-grid ol{ list-style:decimal; padding-left:20px; margin-top:10px; }
+.audit-flow-grid li{ font-size:14px; color:var(--fg-dim); line-height:1.7; margin-bottom:8px; padding-left:4px; }
+@media(max-width:1100px){
+  .audit-stage{ min-height:96px; padding-left:104px; }
+  .audit-icon{ position:absolute; top:24px; left:52px; margin:0; }
+  .audit-step{ top:30px; }
+}
+@media(max-width:640px){
+  .audit-flow-grid{ grid-template-columns:1fr; gap:0; }
+  .audit-stage{ padding-left:92px; }
+  .audit-icon{ left:48px; width:28px; height:28px; }
+}
+@media(min-width:1101px){
+  .audit-stage{ display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start; }
+  .audit-stage strong{ min-height:38px; }
+  .audit-icon{ flex-shrink:0; }
+}
