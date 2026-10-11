@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Quality Workbench — Muhammad Mukmin Aidil</title>
+  <meta name="description" content="Explore a Python and SQLite merchant onboarding case study: validation, cleaning, duplicate resolution and exception reporting.">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){document.documentElement.dataset.theme='dark'}</script>
+  <link rel="stylesheet" href="css/style.css?v=workbench-1">
+  <link rel="stylesheet" href="css/workbench.css?v=1">
+</head>
+<body class="workbench-page">
+  <header class="wb-header">
+    <a href="index.html#merchant-project" class="wb-back">&larr; Back to portfolio</a>
+    <span class="wb-wordmark">MMA <span>/ DATA LAB</span></span>
+    <button type="button" id="wb-theme" class="wb-button">Switch theme</button>
+  </header>
+  <main class="wb-main">
+    <section class="wb-intro">
+      <div><p class="wb-eyebrow">Python &middot; SQLite &middot; Data quality case study</p>
+      <h1>Messy submissions.<br><em>Clear decisions.</em></h1>
+      <p class="wb-lead">Follow a merchant record from partner submission to onboarding-ready data. Every change has a rule. Every rejection has a reason.</p></div>
+      <aside class="wb-overview"><span class="wb-eyebrow">Verified original batch</span><strong>195 <span>&rarr;</span> 112</strong><p>submissions &rarr; unique clean merchants</p><div><span>59 rejected</span><span>24 duplicates removed</span></div><small>Python standard library &middot; SQLite reference data<br>24 included unit tests passed during review</small></aside>
+    </section>
+
+    <section class="wb-panel" aria-labelledby="load-title">
+      <div class="wb-section-head"><div><p class="wb-eyebrow">01 / Assemble a batch</p><h2 id="load-title">Drop it. Trace it. Understand it.</h2></div><button class="wb-button" id="load-all">Load all samples</button></div>
+      <p class="wb-muted">Drag these sample cards into the tray, or tap a card to add it. Try one partner, then combine all three to reveal cross-file duplicates.</p>
+      <div class="wb-ingestion">
+        <div class="wb-files" aria-label="Available sample files">
+          <button class="wb-file" draggable="true" data-partner="A" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg><span><strong>Partner A</strong><small>70 records &middot; sample CSV</small></span><span class="wb-file-state">+ Add</span></button>
+          <button class="wb-file" draggable="true" data-partner="B" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg><span><strong>Partner B</strong><small>65 records &middot; sample CSV</small></span><span class="wb-file-state">+ Add</span></button>
+          <button class="wb-file" draggable="true" data-partner="C" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg><span><strong>Partner C</strong><small>60 records &middot; sample CSV</small></span><span class="wb-file-state">+ Add</span></button>
+        </div>
+        <div id="drop-tray" class="wb-drop">
+          <svg viewBox="0 0 32 32" class="wb-tray-icon" aria-hidden="true"><path d="M5 20v8h22v-8M16 3v18m-6-6 6 6 6-6"/></svg>
+          <strong id="tray-label">Your batch starts here</strong>
+          <p id="tray-summary">Drop sample cards here or use the Add buttons.</p>
+          <div class="wb-actions"><button id="run-batch" class="wb-button wb-primary" disabled>Explore processing</button><button id="reset-batch" class="wb-button" disabled>Reset</button></div>
+        </div>
+      </div>
+      <p class="wb-note">Interactive replay of Python validation results using anonymised demonstration records. No uploads or server processing. Contact details are fictional; reference date: 1 June 2026.</p>
+      <p class="wb-status" id="batch-status" role="status">Choose a sample to begin.</p>
+    </section>
+
+    <section id="wb-results" class="wb-results" hidden aria-labelledby="results-title">
+      <div class="wb-section-head"><div><p class="wb-eyebrow">02 / Follow the decisions</p><h2 id="results-title">A batch you can account for.</h2></div><span id="batch-name" class="wb-tag"></span></div>
+      <div class="wb-metrics">
+        <div><span>Submissions</span><strong id="metric-in">0</strong></div><div><span>Clean merchants</span><strong id="metric-clean">0</strong></div><div><span>Rejected submissions</span><strong id="metric-errors">0</strong></div><div><span>Duplicates removed</span><strong id="metric-dupes">0</strong></div>
+      </div>
+      <div class="wb-panel wb-route"><div class="wb-reconcile" id="reconcile"></div><div class="wb-bar" aria-hidden="true"><span id="bar-clean"></span><span id="bar-errors"></span><span id="bar-dupes"></span></div>
+        <ol class="wb-pipeline"><li><span>01</span>Read CSVs</li><li><span>02</span>Check 7 rules</li><li><span>03</span>Normalise fields</li><li><span>04</span>Resolve duplicates</li><li><span>05</span>Export results</li></ol>
+      </div>
+
+      <div class="wb-explorer">
+        <section class="wb-panel wb-list-panel" aria-labelledby="records-title">
+          <h3 id="records-title">Record explorer</h3><p class="wb-muted">Select a record to inspect its journey.</p>
+          <div class="wb-filters" role="group" aria-label="Record filters"><button data-filter="all" aria-pressed="true">All</button><button data-filter="clean" aria-pressed="false">Clean</button><button data-filter="rejected" aria-pressed="false">Rejected</button><button data-filter="duplicate" aria-pressed="false">Duplicates</button></div>
+          <label class="wb-search-label" for="record-search">Find a sample merchant or submission ID</label><input id="record-search" type="search" placeholder="Search records…" autocomplete="off">
+          <div class="wb-error-filter" hidden><label for="error-rule">Rejection reason</label><select id="error-rule"><option value="all">All rejection reasons</option></select></div>
+          <p id="record-count" class="wb-note"></p><div id="record-list" class="wb-record-list" aria-label="Sample records"></div>
+        </section>
+        <section class="wb-panel wb-inspector" aria-labelledby="inspect-title">
+          <div class="wb-section-head"><div><p id="inspect-id" class="wb-eyebrow"></p><h3 id="inspect-title">Select a record</h3></div><span id="inspect-status" class="wb-tag"></span></div>
+          <p id="inspect-summary" class="wb-muted"></p>
+          <div class="wb-view-switch" role="group" aria-label="Record version"><button data-view="original" aria-pressed="true">Original</button><button data-view="cleaned" aria-pressed="false">Cleaned / outcome</button></div>
+          <div class="wb-compare" id="record-compare"></div>
+          <h4 class="wb-subtitle">Seven validation checks</h4><div id="record-rules" class="wb-rule-grid"></div>
+          <div id="duplicate-detail" class="wb-duplicate" hidden></div>
+        </section>
+      </div>
+
+      <section class="wb-panel wb-export" aria-labelledby="export-title"><div><p class="wb-eyebrow">03 / Make the result useful</p><h2 id="export-title">Ready for the next step.</h2><p class="wb-muted">Download the selected batch's clean records or routed exceptions. Exports contain fictional demonstration data.</p></div><div class="wb-actions"><button class="wb-button wb-primary" id="export-clean">Download clean CSV</button><button class="wb-button" id="export-errors">Download errors CSV</button></div></section>
+    </section>
+
+    <section class="wb-method wb-panel" aria-labelledby="method-title"><p class="wb-eyebrow">Behind the workbench</p><h2 id="method-title">Reliable decisions, made explicit.</h2><div class="wb-method-grid"><div><h3>Python + SQLite</h3><p>The original batch tool reads CSV submissions and reference tables, checks all applicable rules, normalises valid rows and produces clean.csv and errors.csv. It uses the Python standard library.</p></div><div><h3>Explainable classification</h3><p>Keyword rules map free-text categories to a single category. Ambiguous and unmatched values are rejected for review. The implemented classifier uses deterministic rules.</p></div><div><h3>Deterministic deduplication</h3><p>Normalised merchant names form groups. The newest registration date wins; the smallest submission ID breaks ties. Matching on name alone can merge separate branches.</p></div></div>
+      <details><summary>Scope and engineering limitations</summary><p>This browser experience replays prepared validation results and recomputes duplicate groups for selected partners. It does not execute Python. Demo identifiers, merchant names, contacts and routing addresses are fictional.</p><p>The original implementation loads canonical categories from SQLite but does not enforce that membership during classification; the prepared demo outputs have been checked against the category reference. Broader phone validation, transactional outputs, concurrency control and production-scale benchmarks remain future improvements. The fixed validation date is 1 June 2026.</p></details>
+    </section>
+    <footer class="wb-footer"><a href="index.html#merchant-project">&larr; Return to Key Projects</a><span>Designed for clarity. Built to explain.</span></footer>
+  </main>
+  <noscript><p class="wb-panel">Enable JavaScript to explore the interactive workbench. The project overview and methodology remain available above.</p></noscript>
+  <script src="assets/merchant-demo.js?v=1"></script>
+  <script src="js/workbench.js?v=1"></script>
+</body>
+</html>

@@ -886,3 +886,13 @@ html.js .reveal.in{ opacity:1; transform:translateY(0); }
   .audit-stage strong{ min-height:38px; }
   .audit-icon{ flex-shrink:0; }
 }
+
+/* Merchant pipeline case-study preview */
+.merchant-preview{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;margin-top:24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.merchant-preview p{font-size:13px;color:var(--fg-dim);margin-top:10px;}
+.merchant-preview .merchant-numbers{font-size:18px;}
+.merchant-numbers strong{font-size:28px;color:var(--fg);font-weight:500;}
+.merchant-numbers>span{color:var(--accent);margin:0 6px;}
+.merchant-preview .btn{flex-shrink:0;}
+.project-card .merchant-demo-note{font-size:13px;margin:18px 0 0;}
+@media(max-width:760px){.merchant-preview{flex-direction:column;align-items:stretch;}.merchant-preview .btn{justify-content:center;}.merchant-preview .merchant-numbers{font-size:15px;}.merchant-numbers strong{font-size:24px;}}
